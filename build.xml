@@ -1,0 +1,88 @@
+<project name="Login Example" default="all">
+	<property name="myproject" value="E:/LoginExample1"></property>
+	
+	<property name="build" location="build"/>
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"></property>
+	<property name="test" location="test"></property>
+	<property name="report" location="report"></property>
+	<property name="docs" location="docs"></property>
+	<property name="deploy" location="deploy"></property>
+	
+	
+	<path id="myclasspath">
+		<fileset includes="*.jar" dir="D:\Lib\servlet-api\2.5"></fileset>
+	</path>
+	<path id="junitbuildpath">
+		<fileset includes="*.jar" dir="D:\Lib"></fileset>
+		</path>
+	<property file="build.properties" prefix="config"></property>
+	
+	<target name="all" depends="report">
+		<echo>Welcome to the Ant Script ....</echo>
+	</target>
+
+	<target name="init" depends="clean">
+		<echo>Initialization !!</echo>
+		<!--<mkdir dir="${bin}"/>-->
+		<mkdir dir="${test}"/>
+		<mkdir dir="${report}"/>
+		<!--<mkdir dir="${docs}"/>-->
+		<!--<mkdir dir="${deploy}"/>-->
+		<!--<mkdir dir="${build}"/>-->
+		
+	</target>
+
+	<target name="clean">
+		<echo>Cleaning !!</echo>
+		<echo>Project Name : ${ant.project.name}</echo>
+		<echo>Ant verion : ${ant.version}</echo>
+		<delete dir="${build}/com"></delete>
+		<delete dir="${bin}"></delete>
+		<delete dir="${test}"></delete>
+		<delete dir="${report}"></delete>
+		<delete dir="${docs}"></delete>
+		<delete dir="${deploy}"></delete>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo>Compiling  !!</echo>
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="myclasspath"></classpath>
+		
+		</javac>
+	</target>
+	
+	<target name="test" depends="compile">
+		<echo>	Test !!	</echo>
+		<junit printsummary="true">
+			<classpath refid="junitbuildpath"></classpath>
+			<classpath path="${build}"></classpath>
+			<test name="com.psl.test.ConnectionManagerTest" todir="${test}"></test>
+			<formatter type="xml"></formatter>
+			<formatter type="plain"></formatter>
+		</junit>
+	</target>
+	
+	<target name="report" depends="test">
+		<echo>Reports !!</echo>
+		<junitreport>
+		<fileset dir="${test}">
+			<include name="TEST-*.xml"></include>
+		</fileset>
+		<report todir="${report}" format="frames"></report>
+		</junitreport>
+	</target>
+	
+	<target name="docs" depends="report">
+		<echo>Docs !!</echo>
+	</target>
+
+	<target name="package" depends="docs">
+		<echo>Packaging !!</echo>
+	</target>
+	
+	<target name="deploy" depends="package">
+		<ant antfile="abc.xml"></ant>
+	</target>	
+</project>
