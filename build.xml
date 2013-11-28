@@ -1,4 +1,4 @@
-<project name="Login Example" default="all">
+<project name="Login Example" basedir="." default="all">
 	<property name="myproject" value="E:/LoginExample1"></property>
 	
 	<property name="build" location="build"/>
