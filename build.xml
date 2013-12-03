@@ -1,8 +1,8 @@
 <project name="Login Example" basedir="." default="all">
 	<property name="myproject" value="E:/LoginExample1"></property>
 	
-	<property name="build" location="build"/>
-	<property name="src" location="src"/>
+	<property name="build" location="build"></property>
+	<property name="src" location="src"></property>
 	<property name="bin" location="bin"></property>
 	<property name="test" location="test"></property>
 	<property name="report" location="report"></property>
@@ -29,7 +29,7 @@
 		<mkdir dir="${report}"/>
 		<!--<mkdir dir="${docs}"/>-->
 		<!--<mkdir dir="${deploy}"/>-->
-		<!--<mkdir dir="${build}"/>-->
+		<mkdir dir="${build}"/>
 		
 	</target>
 
@@ -37,7 +37,7 @@
 		<echo>Cleaning !!</echo>
 		<echo>Project Name : ${ant.project.name}</echo>
 		<echo>Ant verion : ${ant.version}</echo>
-		<delete dir="${build}/com"></delete>
+		<delete dir="${build}"></delete>
 		<delete dir="${bin}"></delete>
 		<delete dir="${test}"></delete>
 		<delete dir="${report}"></delete>
