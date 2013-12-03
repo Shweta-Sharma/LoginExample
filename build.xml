@@ -30,7 +30,6 @@
 		<!--<mkdir dir="${docs}"/>-->
 		<!--<mkdir dir="${deploy}"/>-->
 		<mkdir dir="${build}"/>
-		
 	</target>
 
 	<target name="clean">
